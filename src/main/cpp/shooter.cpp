@@ -15,6 +15,7 @@ void shooter::OnUpdate(units::second_t dt) {
       if (_driver.GetXButton() == true) {
         GetConfig().spinner.controller.Set(ControlMode::PercentOutput, 0.95);
       }
+      SetIdle();
       break;
   }
 }
