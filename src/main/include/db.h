@@ -2,18 +2,12 @@
 
 #include <frc/system/plant/DCMotor.h>
 #include <frc/interfaces/Gyro.h>
-#include <frc/XboxController.h>
 #include <units/time.h>
-#include <ctre/Phoenix.h>
 #include <units/angle.h>
 
 #include <iostream>
 
-struct Gearbox {
-  TalonSRX controller;
-
-  frc::DCMotor motor = frc::DCMotor::CIM(2);
-};
+#include "globals.h"
 
 struct dbConfig {
   Gearbox &left1;
