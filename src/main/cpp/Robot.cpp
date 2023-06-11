@@ -19,7 +19,7 @@ void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
-  if (Driver.GetLeftY() > 0.15) {
+  if (Driver.GetLeftY() > 0.15 or Driver.GetLeftY() < -0.15) {
     Right1.Set(ControlMode::PercentOutput, Driver.GetLeftY());
     Right2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
     Right3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
@@ -28,7 +28,7 @@ void Robot::TeleopPeriodic() {
     Left3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
   }
 
-  else if (Driver.GetLeftX() > 0.15) {
+  else if (Driver.GetLeftX() > 0.15 or Driver.GetLeftX() < -0.15) {
     Right1.Set(ControlMode::PercentOutput, Driver.GetLeftX());
     Right2.Set(ControlMode::PercentOutput, Driver.GetLeftX());
     Right3.Set(ControlMode::PercentOutput, Driver.GetLeftX());
