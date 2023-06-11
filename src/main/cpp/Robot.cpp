@@ -37,10 +37,10 @@ void Robot::TeleopPeriodic() {
     Left3.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
   }
 
-  else if (Driver.GetAButtonPressed()) {
+  else if (Driver.GetAButtonPressed() == true) {
     Intake.Set(ControlMode::PercentOutput, -0.85);
   }
-  else if (Driver.GetBButtonPressed()) {
+  else if (Driver.GetBButtonPressed() == true) {
     ShooterLeft.Set(ControlMode::PercentOutput, -0.95);
     ShooterRight.Set(ControlMode::PercentOutput, -0.95);
   }
