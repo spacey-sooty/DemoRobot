@@ -19,32 +19,7 @@ void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
-  if (Driver.GetLeftY() > 0.15 or Driver.GetLeftY() < -0.15) {
-    Right1.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Right2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Right3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left1.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-  }
-
-  else if (Driver.GetLeftX() > 0.15 or Driver.GetLeftX() < -0.15) {
-    Right1.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Right2.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Right3.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Left1.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-    Left2.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-    Left3.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-  }
-
-  else if (Driver.GetAButtonPressed() == true) {
-    Intake.Set(ControlMode::PercentOutput, -0.85);
-  }
-  else if (Driver.GetBButtonPressed() == true) {
-    ShooterLeft.Set(ControlMode::PercentOutput, -0.95);
-    ShooterRight.Set(ControlMode::PercentOutput, -0.95);
-  }
-  else if (Driver.GetLeftX() > 0.15 or Driver.GetLeftX() < -0.15 and Driver.GetAButtonPressed() == true) {
+  if (Driver.GetLeftX() > 0.15 or Driver.GetLeftX() < -0.15 and Driver.GetAButtonPressed() == true) {
     Right1.Set(ControlMode::PercentOutput, Driver.GetLeftX());
     Right2.Set(ControlMode::PercentOutput, Driver.GetLeftX());
     Right3.Set(ControlMode::PercentOutput, Driver.GetLeftX());
@@ -81,6 +56,32 @@ void Robot::TeleopPeriodic() {
     Left2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
     Left3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
     Intake.Set(ControlMode::PercentOutput, -.075);
+  }
+
+  else if (Driver.GetLeftY() > 0.15 or Driver.GetLeftY() < -0.15) {
+    Right1.Set(ControlMode::PercentOutput, Driver.GetLeftY());
+    Right2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
+    Right3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
+    Left1.Set(ControlMode::PercentOutput, Driver.GetLeftY());
+    Left2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
+    Left3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
+  }
+
+  else if (Driver.GetLeftX() > 0.15 or Driver.GetLeftX() < -0.15) {
+    Right1.Set(ControlMode::PercentOutput, Driver.GetLeftX());
+    Right2.Set(ControlMode::PercentOutput, Driver.GetLeftX());
+    Right3.Set(ControlMode::PercentOutput, Driver.GetLeftX());
+    Left1.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
+    Left2.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
+    Left3.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
+  }
+
+  else if (Driver.GetAButtonPressed() == true) {
+    Intake.Set(ControlMode::PercentOutput, -0.85);
+  }
+  else if (Driver.GetBButtonPressed() == true) {
+    ShooterLeft.Set(ControlMode::PercentOutput, -0.95);
+    ShooterRight.Set(ControlMode::PercentOutput, -0.95);
   }
   else  {
     Intake.Set(ControlMode::PercentOutput, -.075);
