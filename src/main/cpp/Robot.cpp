@@ -20,17 +20,16 @@ void Robot::AutonomousPeriodic() {}
 void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
   double forwardSpeed = (Driver.GetLeftY() > 0.15 or Driver.GetLeftY() < -0.15) ? Driver.GetLeftY() : 0;
-  double turn = (Driver.GetLeftX() > 0.15 or Driver.GetLeftY() < -0.15) ? Driver.GetLeftX() : 0;
+  double multiply = (Driver.GetLeftX() % 2 == 0) ? 1 : -1;
   double aPressed = (Driver.GetAButtonPressed() == true) ? -0.95 : -0.15;
   double bPressed = (Driver.GetBButtonPressed() == true) ? -0.975 : 0;
-  Right1.Set(ControlMode::PercentOutput, forwardSpeed + turn);
-  Right2.Set(ControlMode::PercentOutput, forwardSpeed + turn);
-  Right3.Set(ControlMode::PercentOutput, forwardSpeed + turn);
-  Left1.Set(ControlMode::PercentOutput,  forwardSpeed + turn);
-  Left2.Set(ControlMode::PercentOutput,  forwardSpeed + turn);
-  Left3.Set(ControlMode::PercentOutput,  forwardSpeed + turn);
-  Intake.Set(ControlMode::PercentOutput, aPressed);
-  ShooterLeft.Set(ControlMode::PercentOutput, bPressed);
+  Right1.Set(ControlMode::PercentOutput, forwardSpeed * multiply);
+  Right2.Set(ControlMode::PercentOutput, forwardSpeed * multiply);
+  Right3.Set(ControlMode::PercentOutput, forwardSpeed * multiply);
+  Left1.Set(ControlMode::PercentOutput,  forwardSpeed * -multiply);
+  Left2.Set(ControlMode::PercentOutput,  forwardSpeed * -multiply);
+  Left3.Set(ControlMode::PercentOutput,  forwardSpeed * -multiply);
+  Intake.Set(ControlMode::PercentOutpt, aPressed)   ShooterLeft.Set(ControlMode::PercentOutput, bPressed);
   ShooterRight.Set(ControlMode::PercentOutput, bPressed);
 }
 
