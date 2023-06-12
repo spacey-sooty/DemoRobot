@@ -19,73 +19,19 @@ void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
-  if (Driver.GetLeftX() > 0.15 or Driver.GetLeftX() < -0.15 and Driver.GetAButtonPressed() == true) {
-    Right1.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Right2.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Right3.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Left1.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-    Left2.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-    Left3.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-    Intake.Set(ControlMode::PercentOutput, -.075);
-  }
-  else if (Driver.GetLeftX() > 0.15 or Driver.GetLeftX() < -0.15 and Driver.GetBButtonPressed() == true) {
-    Right1.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Right2.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Right3.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Left1.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-    Left2.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-    Left3.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-    ShooterLeft.Set(ControlMode::PercentOutput, -0.95); 
-    ShooterRight.Set(ControlMode::PercentOutput, -0.95);
-  }
-  else if (Driver.GetLeftY() > 0.15 or Driver.GetLeftY() < -0.15 and Driver.GetBButtonPressed() == true) {
-    ShooterLeft.Set(ControlMode::PercentOutput, -0.95); 
-    ShooterRight.Set(ControlMode::PercentOutput, -0.95);
-    Right1.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Right2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Right3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left1.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-  }
-  else if (Driver.GetLeftY() > 0.15 or Driver.GetLeftY() < -0.15 and Driver.GetAButtonPressed() == true){
-    Right1.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Right2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Right3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left1.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Intake.Set(ControlMode::PercentOutput, -.075);
-  }
-
-  else if (Driver.GetLeftY() > 0.15 or Driver.GetLeftY() < -0.15) {
-    Right1.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Right2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Right3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left1.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left2.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-    Left3.Set(ControlMode::PercentOutput, Driver.GetLeftY());
-  }
-
-  else if (Driver.GetLeftX() > 0.15 or Driver.GetLeftX() < -0.15) {
-    Right1.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Right2.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Right3.Set(ControlMode::PercentOutput, Driver.GetLeftX());
-    Left1.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-    Left2.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-    Left3.Set(ControlMode::PercentOutput, -Driver.GetLeftX());
-  }
-
-  else if (Driver.GetAButtonPressed() == true) {
-    Intake.Set(ControlMode::PercentOutput, -0.85);
-  }
-  else if (Driver.GetBButtonPressed() == true) {
-    ShooterLeft.Set(ControlMode::PercentOutput, -0.95);
-    ShooterRight.Set(ControlMode::PercentOutput, -0.95);
-  }
-  else  {
-    Intake.Set(ControlMode::PercentOutput, -.075);
-  }
+  double forwardSpeed = (Driver.GetLeftY() > 0.15 or Driver.GetLeftY() < -0.15) ? Driver.GetLeftY() : 0;
+  double turn = (Driver.GetLeftX() > 0.15 or Driver.GetLeftY() < -0.15) ? Driver.GetLeftX() : 0;
+  double aPressed = (Driver.GetAButtonPressed() == true) ? -0.95 : -0.15;
+  double bPressed = (Driver.GetBButtonPressed() == true) ? -0.975 : 0;
+  Right1.Set(ControlMode::PercentOutput, forwardSpeed + turn);
+  Right2.Set(ControlMode::PercentOutput, forwardSpeed + turn);
+  Right3.Set(ControlMode::PercentOutput, forwardSpeed + turn);
+  Left1.Set(ControlMode::PercentOutput,  forwardSpeed + turn);
+  Left2.Set(ControlMode::PercentOutput,  forwardSpeed + turn);
+  Left3.Set(ControlMode::PercentOutput,  forwardSpeed + turn);
+  Intake.Set(ControlMode::PercentOutput, aPressed);
+  ShooterLeft.Set(ControlMode::PercentOutput, bPressed);
+  ShooterRight.Set(ControlMode::PercentOutput, bPressed);
 }
 
 void Robot::DisabledInit() {}
