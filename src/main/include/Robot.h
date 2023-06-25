@@ -3,6 +3,8 @@
 #include <frc/TimedRobot.h>
 #include <ctre/Phoenix.h>
 #include <frc/XboxController.h>
+#include <frc/DoubleSolenoid.h>
+#include <frc/Compressor.h>
 
 class Robot : public frc::TimedRobot {
  public:
